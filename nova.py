@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""NOVA local — téléchargement d'un modèle et API privée à clés.
+"""Dark Light local — téléchargement d'un modèle et API privée à clés.
 
 Le serveur ne journalise pas les requêtes et ne sauvegarde pas les messages.
 Les clés API sont stockées sous forme de hash SHA-256 uniquement.
@@ -20,9 +20,9 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 
-APP_NAME = "NOVA local"
-DEFAULT_DB = Path("nova_keys.db")
-DEFAULT_MODEL_DIR = Path("models/qwen2.5-0.5b-instruct")
+APP_NAME = "Dark Light local"
+DEFAULT_DB = Path("dark_light_keys.db")
+DEFAULT_MODEL_DIR = Path("models/dark-light-qwen")
 DEFAULT_REPO_ID = "Qwen/Qwen2.5-0.5B-Instruct-GGUF"
 DEFAULT_FILENAME = "qwen2.5-0.5b-instruct-q4_k_m.gguf"
 MAX_BODY_BYTES = 2_000_000
@@ -86,7 +86,7 @@ class KeyStore:
 
         key_id = secrets.token_hex(6)
         secret = secrets.token_urlsafe(32)
-        token = f"nova_{key_id}_{secret}"
+        token = f"darklight_{key_id}_{secret}"
         expires_at = format_expiry(expires_days)
 
         with self._connect() as connection:
@@ -213,14 +213,14 @@ def validate_messages(value: Any) -> list[dict[str, str]]:
     return messages
 
 
-class NovaHandler(BaseHTTPRequestHandler):
+class DarkLightHandler(BaseHTTPRequestHandler):
     """API HTTP sans journal de requêtes ni stockage des conversations."""
 
-    server_version = "NOVA/1.0"
+    server_version = "DARK-LIGHT/1.0"
     sys_version = ""
 
     @property
-    def nova_server(self) -> "NovaServer":
+    def dark_light_server(self) -> "DarkLightServer":
         return self.server  # type: ignore[return-value]
 
     def log_message(self, _format: str, *_args: Any) -> None:
@@ -248,13 +248,13 @@ class NovaHandler(BaseHTTPRequestHandler):
         if self.path != "/health":
             self._send_json(404, {"error": "not_found"})
             return
-        self._send_json(200, {"ok": True, "model": self.nova_server.model_name})
+        self._send_json(200, {"ok": True, "model": self.dark_light_server.model_name})
 
     def do_POST(self) -> None:  # noqa: N802
         if self.path != "/v1/chat":
             self._send_json(404, {"error": "not_found"})
             return
-        if not self.nova_server.keys.valid(self._bearer_token() or ""):
+        if not self.dark_light_server.keys.valid(self._bearer_token() or ""):
             self._send_json(401, {"error": "invalid_api_key"})
             return
 
@@ -272,7 +272,7 @@ class NovaHandler(BaseHTTPRequestHandler):
             messages = validate_messages(body.get("messages"))
             max_tokens = min(max(int(body.get("max_tokens", 512)), 1), 4096)
             temperature = min(max(float(body.get("temperature", 0.7)), 0.0), 2.0)
-            answer = self.nova_server.model.chat(messages, max_tokens, temperature)
+            answer = self.dark_light_server.model.chat(messages, max_tokens, temperature)
         except (ValueError, TypeError, json.JSONDecodeError) as error:
             self._send_json(400, {"error": "invalid_request", "detail": str(error)})
             return
@@ -284,17 +284,17 @@ class NovaHandler(BaseHTTPRequestHandler):
         self._send_json(200, {
             "id": f"chat_{secrets.token_hex(12)}",
             "object": "chat.completion",
-            "model": self.nova_server.model_name,
+            "model": self.dark_light_server.model_name,
             "choices": [{"index": 0, "message": {"role": "assistant", "content": answer}}],
         })
 
 
-class NovaServer(ThreadingHTTPServer):
+class DarkLightServer(ThreadingHTTPServer):
     daemon_threads = True
     allow_reuse_address = True
 
     def __init__(self, address: tuple[str, int], keys: KeyStore, model: LocalModel, model_name: str):
-        super().__init__(address, NovaHandler)
+        super().__init__(address, DarkLightHandler)
         self.keys = keys
         self.model = model
         self.model_name = model_name
@@ -356,7 +356,7 @@ def command_serve(args: argparse.Namespace) -> int:
     model_path = Path(args.model) if args.model else find_default_model()
     if model_path is None:
         print(
-            "Modèle introuvable. Lancez d'abord `python nova.py download` "
+            "Modèle introuvable. Lancez d'abord `python dark_light.py download` "
             "ou utilisez `--model chemin/vers/model.gguf`.",
             file=sys.stderr,
         )
@@ -364,18 +364,18 @@ def command_serve(args: argparse.Namespace) -> int:
     try:
         model = LocalModel(model_path, args.context)
         keys = KeyStore(Path(args.db))
-        server = NovaServer((args.host, args.port), keys, model, model_path.name)
+        server = DarkLightServer((args.host, args.port), keys, model, model_path.name)
     except Exception as error:
-        print(f"Impossible de démarrer NOVA: {error}", file=sys.stderr)
+        print(f"Impossible de démarrer Dark Light: {error}", file=sys.stderr)
         return 1
 
-    print(f"NOVA est disponible sur http://{args.host}:{args.port}")
+    print(f"Dark Light est disponible sur http://{args.host}:{args.port}")
     print("Aucun log de requête et aucun message sauvegardé.")
     print("Arrêt: Ctrl+C")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\nNOVA arrêté.")
+        print("\nDark Light arrêté.")
     finally:
         server.server_close()
     return 0
@@ -383,8 +383,8 @@ def command_serve(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="nova.py",
-        description="Télécharger un modèle GGUF et servir NOVA avec des clés API locales.",
+        prog=Path(sys.argv[0]).name,
+        description="Télécharger un modèle GGUF et servir Dark Light avec des clés API locales.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 

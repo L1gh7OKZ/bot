@@ -165,7 +165,7 @@ function bindAssistantActions(wrapper, response) {
   $('.share-response', wrapper)?.addEventListener('click', async () => {
     const shareText = response.intro;
     try {
-      if (navigator.share) await navigator.share({ title: 'NOVA', text: shareText });
+      if (navigator.share) await navigator.share({ title: 'DARK LIGHT', text: shareText });
       else await copyText(shareText);
     } catch {
       // L'utilisateur a fermé la feuille de partage : aucune notification nécessaire.
@@ -186,7 +186,7 @@ function renderTyping() {
   const wrapper = document.createElement('div');
   wrapper.className = 'message message-assistant';
   wrapper.id = 'typing-message';
-  wrapper.innerHTML = '<div class="assistant-avatar">✦</div><div class="message-bubble"><div class="typing-indicator" aria-label="NOVA écrit"><i></i><i></i><i></i></div></div>';
+  wrapper.innerHTML = '<div class="assistant-avatar">✦</div><div class="message-bubble"><div class="typing-indicator" aria-label="DARK LIGHT écrit"><i></i><i></i><i></i></div></div>';
   messagesView.appendChild(wrapper);
 }
 
@@ -375,10 +375,10 @@ window.addEventListener('resize', () => {
 $('#theme-toggle').addEventListener('click', () => {
   const isLight = document.body.dataset.theme === 'light';
   document.body.dataset.theme = isLight ? 'dark' : 'light';
-  safeStorageSet('nova-theme', document.body.dataset.theme);
+  safeStorageSet('dark-light-theme', document.body.dataset.theme);
   showToast(isLight ? 'Mode sombre activé' : 'Mode clair activé');
 });
-const savedTheme = safeStorageGet('nova-theme');
+const savedTheme = safeStorageGet('dark-light-theme') || safeStorageGet('nova-theme');
 if (savedTheme === 'light' || savedTheme === 'dark') document.body.dataset.theme = savedTheme;
 
 $('#direct-mode-btn').addEventListener('click', () => {
