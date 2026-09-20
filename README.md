@@ -3,11 +3,11 @@
 DARK LIGHT contient maintenant :
 
 - une interface web dark en français ;
-- un script Python pour télécharger un modèle open source ;
+- un fichier Python unique `dark_light.py` pour télécharger le modèle, ouvrir l’interface, gérer les clés et lancer l’API ;
 - une API locale de chat protégée par clés d'accès ;
 - un gestionnaire de clés intégré, sans stockage des secrets en clair.
 
-La démo ne journalise pas les requêtes et ne sauvegarde pas les conversations. Le script Python écoute sur `127.0.0.1` par défaut.
+La démo ne journalise pas les requêtes et ne sauvegarde pas les conversations. Le fichier unique écoute sur `127.0.0.1` par défaut ; les clés restent dans un fichier séparé du code.
 
 ## Interface web
 
@@ -85,7 +85,7 @@ Révoquer une clé avec son ID :
 python dark_light.py key revoke ID_DE_LA_CLE
 ```
 
-Les clés sont stockées dans `dark_light_keys.db` sous forme de hash SHA-256. La base et les modèles sont ignorés par Git.
+Les clés sont stockées séparément dans `private/dark_light_keys.db` sous forme de hash SHA-256. La base et les modèles sont ignorés par Git.
 
 ## Démarrer l'API privée
 
@@ -116,7 +116,7 @@ L'API ne conserve pas les prompts, les réponses, les adresses IP ou les tokens 
 
 ## Note de sécurité
 
-- Garder `dark_light_keys.db` privé.
+- Garder le dossier `private/` privé.
 - Ne pas lancer `--host 0.0.0.0` sur Internet sans HTTPS, pare-feu et authentification adaptée.
 - Ne jamais placer une clé API dans le code frontend ou dans Git.
 - Le mode direct de l'interface règle le style de réponse ; il ne désactive pas les protections de sécurité propres au modèle.
