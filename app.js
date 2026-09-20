@@ -408,7 +408,7 @@ $$('[data-coming-soon]').forEach((item) => item.addEventListener('click', (event
   event.preventDefault();
   showToast('Cette section arrive bientôt');
 }));
-$('[data-action="upgrade"]').addEventListener('click', () => showToast('Votre accès Infinity arrive bientôt'));
+$('[data-action="privacy"]').addEventListener('click', () => showToast('Mode local : aucune donnée de conversation n’est enregistrée'));
 $('[data-action="settings"]').addEventListener('click', () => showToast('Paramètres — bientôt disponibles'));
 
 window.addEventListener('keydown', (event) => {

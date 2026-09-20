@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0b0d12" />
-  <meta name="description" content="NOVA — votre intelligence créative sans limite." />
-  <title>NOVA — IA sans limite</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#2a080d" />
+  <meta name="description" content="NOVA — une intelligence créative locale, gratuite et privée." />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <title>NOVA — IA locale et privée</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -73,14 +72,14 @@
       </div>
 
       <div class="sidebar-bottom">
-        <button class="upgrade-card" data-action="upgrade">
-          <span class="upgrade-icon">✦</span>
-          <span class="upgrade-copy"><strong>Passez à l'infini</strong><small>Débloquez tout le potentiel</small></span>
+        <button class="upgrade-card" data-action="privacy">
+          <span class="upgrade-icon">◌</span>
+          <span class="upgrade-copy"><strong>Espace privé</strong><small>Aucun compte · aucun suivi</small></span>
           <svg viewBox="0 0 24 24" class="arrow-icon" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
         </button>
         <div class="user-row">
           <div class="avatar avatar-user">ML</div>
-          <div class="user-copy"><strong>Marie Laurent</strong><span>Plan gratuit</span></div>
+          <div class="user-copy"><strong>Mode local</strong><span>Gratuit · sans compte</span></div>
           <button class="icon-btn settings-btn" aria-label="Paramètres" data-action="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"/><path d="m19.4 15 .1.1a1.8 1.8 0 0 1-2.5 2.5l-.1-.1a1.8 1.8 0 0 0-3 .9v.2a1.8 1.8 0 0 1-3.6 0v-.2a1.8 1.8 0 0 0-3-.9l-.1.1a1.8 1.8 0 0 1-2.5-2.5l.1-.1a1.8 1.8 0 0 0-.9-3h-.2a1.8 1.8 0 0 1 0-3.6h.2a1.8 1.8 0 0 0 .9-3l-.1-.1a1.8 1.8 0 0 1 2.5-2.5l.1.1a1.8 1.8 0 0 0 3-.9v-.2a1.8 1.8 0 0 1 3.6 0v.2a1.8 1.8 0 0 0 3 .9l.1-.1a1.8 1.8 0 0 1 2.5 2.5l-.1.1a1.8 1.8 0 0 0 .9 3h.2a1.8 1.8 0 0 1 0 3.6h-.2a1.8 1.8 0 0 0-.9 3Z"/></svg></button>
         </div>
       </div>
@@ -91,7 +90,7 @@
         <button class="icon-btn menu-btn" id="open-sidebar" aria-label="Ouvrir le menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
         <div class="breadcrumbs"><span>Conversation</span><span class="crumb-separator">/</span><strong id="breadcrumb-title">Nouvelle conversation</strong></div>
         <div class="topbar-actions">
-          <div class="status-chip"><span class="status-dot"></span> En ligne</div>
+          <div class="status-chip"><span class="status-dot"></span> Local · privé</div>
           <button class="icon-btn" id="theme-toggle" aria-label="Changer de thème"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 15.2A8.5 8.5 0 0 1 8.8 3.3 8.5 8.5 0 1 0 20.7 15.2Z"/></svg></button>
           <button class="icon-btn notification-btn" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></svg><span></span></button>
         </div>
@@ -100,9 +99,9 @@
       <section class="workspace" id="workspace">
         <div class="welcome-view" id="welcome-view">
           <div class="welcome-copy">
-            <div class="eyebrow"><span class="eyebrow-line"></span> L'intelligence, sans limites</div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> Intelligence locale · sans suivi</div>
             <h1>Pensez plus loin.<br /><em>Créez sans limite.</em></h1>
-            <p>NOVA transforme vos idées en élan. Posez une question, démarrez un projet ou laissez votre curiosité vous guider.</p>
+            <p>NOVA transforme vos idées en élan. Posez une question, démarrez un projet ou laissez votre curiosité vous guider. Ici, vos messages restent dans cet onglet.</p>
           </div>
 
           <div class="stats-row">
@@ -146,7 +145,7 @@
               </div>
             </div>
           </div>
-          <p class="composer-note"><span>✦</span> NOVA peut se tromper. Vérifiez les informations importantes.</p>
+          <p class="composer-note"><span>●</span> Gratuit et local · aucun compte, aucun suivi, aucun message enregistré.</p>
         </div>
       </section>
     </main>
