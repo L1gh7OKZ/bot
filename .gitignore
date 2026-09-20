@@ -1,0 +1,8 @@
+# Données locales et secrets — ne jamais les versionner
+nova_keys.db
+nova_keys.db-*
+models/
+__pycache__/
+*.py[cod]
+.venv/
+.env
