@@ -1,0 +1,5 @@
+# Téléchargement depuis Hugging Face
+huggingface-hub>=0.24.0
+
+# Inférence locale de modèles GGUF
+llama-cpp-python>=0.2.90

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2a080d" />
+  <meta name="description" content="DARK LIGHT — une intelligence créative locale, gratuite et privée." />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <title>DARK LIGHT — IA locale et privée</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <a class="brand" href="#" aria-label="DARK LIGHT, accueil" data-action="new-chat">
+          <span class="brand-mark"><span></span></span>
+          <span class="brand-name">dark<span> light</span></span>
+        </a>
+        <button class="icon-btn mobile-only" id="close-sidebar" aria-label="Fermer le menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <button class="new-chat-btn" data-action="new-chat">
+        <span class="plus-icon">+</span>
+        <span>Nouvelle conversation</span>
+        <span class="shortcut">⌘ K</span>
+      </button>
+
+      <div class="sidebar-label">Espace de travail</div>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a class="nav-item active" href="#chat">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.7-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
+          <span>Conversations</span>
+          <span class="nav-count">12</span>
+        </a>
+        <a class="nav-item" href="#library" data-coming-soon>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v17H7.5A2.5 2.5 0 0 0 5 21.5v-17Z"/><path d="M5 4.5v17M9 6h6M9 10h6"/></svg>
+          <span>Bibliothèque</span>
+        </a>
+        <a class="nav-item" href="#agents" data-coming-soon>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="3"/><path d="M8 2v3M16 2v3M8 12h.01M12 12h.01M16 12h.01M9 16h6"/></svg>
+          <span>Mes agents</span>
+          <span class="beta-pill">BÊTA</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-label conversations-label">Récent</div>
+      <div class="conversation-list" id="conversation-list">
+        <button class="conversation-item active" data-title="Nouvelle conversation">
+          <span class="conversation-dot"></span>
+          <span class="conversation-title">Nouvelle conversation</span>
+          <span class="conversation-more">•••</span>
+        </button>
+        <button class="conversation-item" data-title="Les idées qui changent tout">
+          <span class="conversation-dot"></span>
+          <span class="conversation-title">Les idées qui changent tout</span>
+          <span class="conversation-more">•••</span>
+        </button>
+        <button class="conversation-item" data-title="Plan de lancement">
+          <span class="conversation-dot"></span>
+          <span class="conversation-title">Plan de lancement</span>
+          <span class="conversation-more">•••</span>
+        </button>
+        <button class="conversation-item" data-title="Le futur du travail">
+          <span class="conversation-dot"></span>
+          <span class="conversation-title">Le futur du travail</span>
+          <span class="conversation-more">•••</span>
+        </button>
+      </div>
+
+      <div class="sidebar-bottom">
+        <button class="upgrade-card" data-action="privacy">
+          <span class="upgrade-icon">◌</span>
+          <span class="upgrade-copy"><strong>Espace privé</strong><small>Aucun compte · aucun suivi</small></span>
+          <svg viewBox="0 0 24 24" class="arrow-icon" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <div class="user-row">
+          <div class="avatar avatar-user">ML</div>
+          <div class="user-copy"><strong>Mode local</strong><span>Gratuit · sans compte</span></div>
+          <button class="icon-btn settings-btn" aria-label="Paramètres" data-action="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"/><path d="m19.4 15 .1.1a1.8 1.8 0 0 1-2.5 2.5l-.1-.1a1.8 1.8 0 0 0-3 .9v.2a1.8 1.8 0 0 1-3.6 0v-.2a1.8 1.8 0 0 0-3-.9l-.1.1a1.8 1.8 0 0 1-2.5-2.5l.1-.1a1.8 1.8 0 0 0-.9-3h-.2a1.8 1.8 0 0 1 0-3.6h.2a1.8 1.8 0 0 0 .9-3l-.1-.1a1.8 1.8 0 0 1 2.5-2.5l.1.1a1.8 1.8 0 0 0 3-.9v-.2a1.8 1.8 0 0 1 3.6 0v.2a1.8 1.8 0 0 0 3 .9l.1-.1a1.8 1.8 0 0 1 2.5 2.5l-.1.1a1.8 1.8 0 0 0 .9 3h.2a1.8 1.8 0 0 1 0 3.6h-.2a1.8 1.8 0 0 0-.9 3Z"/></svg></button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="chat">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="open-sidebar" aria-label="Ouvrir le menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        <div class="breadcrumbs"><span>Conversation</span><span class="crumb-separator">/</span><strong id="breadcrumb-title">Nouvelle conversation</strong></div>
+        <div class="topbar-actions">
+          <div class="status-chip"><span class="status-dot"></span> Local · privé</div>
+          <button class="icon-btn" id="theme-toggle" aria-label="Changer de thème"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 15.2A8.5 8.5 0 0 1 8.8 3.3 8.5 8.5 0 1 0 20.7 15.2Z"/></svg></button>
+          <button class="icon-btn notification-btn" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></svg><span></span></button>
+        </div>
+      </header>
+
+      <section class="workspace" id="workspace">
+        <div class="welcome-view" id="welcome-view">
+          <div class="welcome-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> Intelligence locale · sans suivi</div>
+            <h1>Pensez plus loin.<br /><em>Créez sans limite.</em></h1>
+            <p>DARK LIGHT transforme vos idées en élan. Posez une question, démarrez un projet ou laissez votre curiosité vous guider. Ici, vos messages restent dans cet onglet.</p>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat"><span class="stat-value">∞</span><span class="stat-label">possibilités</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-value">24/7</span><span class="stat-label">à vos côtés</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-value">01</span><span class="stat-label">esprit curieux</span></div>
+          </div>
+
+          <div class="prompts-header"><span>Commencez avec une idée</span><span class="prompts-hint">ou écrivez votre propre demande <span>↗</span></span></div>
+          <div class="prompt-grid">
+            <button class="prompt-card prompt-lilac" data-prompt="Imagine le produit qui changera notre quotidien dans 10 ans">
+              <span class="prompt-icon">◈</span><span class="prompt-title">Imaginer demain</span><span class="prompt-description">Le produit qui changera tout</span><span class="prompt-arrow">↗</span>
+            </button>
+            <button class="prompt-card prompt-peach" data-prompt="Aide-moi à transformer une idée floue en projet concret">
+              <span class="prompt-icon">✳</span><span class="prompt-title">Donner vie à une idée</span><span class="prompt-description">Du flou vers le concret</span><span class="prompt-arrow">↗</span>
+            </button>
+            <button class="prompt-card prompt-blue" data-prompt="Explique-moi simplement quelque chose de complexe">
+              <span class="prompt-icon">⌁</span><span class="prompt-title">Comprendre autrement</span><span class="prompt-description">Même les idées complexes</span><span class="prompt-arrow">↗</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="messages-view" id="messages-view" aria-live="polite"></div>
+
+        <div class="composer-wrap">
+          <div class="composer" id="composer">
+            <div class="attachment-preview" id="attachment-preview"></div>
+            <textarea id="message-input" rows="1" placeholder="Demandez n'importe quoi à DARK LIGHT..." aria-label="Votre message"></textarea>
+            <div class="composer-footer">
+              <div class="composer-tools">
+                <input type="file" id="file-input" hidden />
+                <button class="tool-btn" id="attach-btn" aria-label="Joindre un fichier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20.5 11.5-8.8 8.8a5 5 0 0 1-7.1-7.1l9.2-9.2a3.5 3.5 0 0 1 5 5l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg></button>
+                <button class="tool-btn tool-label" id="voice-btn" aria-label="Mode vocal"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg><span>Parler</span></button>
+                <button class="tool-btn tool-label direct-toggle" id="direct-mode-btn" aria-label="Activer le mode direct" aria-pressed="false"><span class="direct-indicator"></span><span>Direct</span></button>
+              </div>
+              <div class="composer-actions">
+                <button class="model-select" id="model-select" aria-expanded="false"><span class="model-orb"></span><span id="selected-model">DARK LIGHT Core</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
+                <button class="send-btn" id="send-btn" aria-label="Envoyer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <p class="composer-note"><span>●</span> Gratuit et local · aucun compte, aucun suivi, aucun message enregistré.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="model-menu" id="model-menu" role="menu">
+    <button class="model-option selected" data-model="DARK LIGHT Core"><span class="model-orb"></span><span><strong>DARK LIGHT Core</strong><small>Rapide et polyvalente</small></span><span class="check">✓</span></button>
+    <button class="model-option" data-model="DARK LIGHT Think"><span class="model-orb reason"></span><span><strong>DARK LIGHT Think</strong><small>Réflexion approfondie</small></span><span class="check">✓</span></button>
+    <button class="model-option" data-model="DARK LIGHT Create"><span class="model-orb create"></span><span><strong>DARK LIGHT Create</strong><small>Pour les idées audacieuses</small></span><span class="check">✓</span></button>
+  </div>
+
+  <div class="toast" id="toast" role="status"><span class="toast-icon">✓</span><span id="toast-message">C'est fait</span></div>
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <script src="app.js"></script>
+</body>
+</html>

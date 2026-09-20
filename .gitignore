@@ -1,0 +1,11 @@
+# Données locales et secrets — ne jamais les versionner
+dark_light_keys.db
+dark_light_keys.db-*
+private/
+nova_keys.db
+nova_keys.db-*
+models/
+__pycache__/
+*.py[cod]
+.venv/
+.env
