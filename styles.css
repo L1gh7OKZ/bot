@@ -143,6 +143,10 @@ textarea::placeholder { color: var(--ink-faint); }
 .tool-btn:hover { color: var(--ink); background: var(--surface-hover); }
 .tool-btn svg { width: 15px; height: 15px; }
 .tool-label { font-size: 10px; }
+.direct-toggle { gap: 5px; }
+.direct-indicator { width: 7px; height: 7px; border: 1px solid var(--ink-faint); border-radius: 50%; transition: background .2s, border-color .2s, box-shadow .2s; }
+.direct-toggle[aria-pressed="true"] { color: var(--lime); }
+.direct-toggle[aria-pressed="true"] .direct-indicator { background: var(--lime); border-color: var(--lime); box-shadow: 0 0 8px rgba(196,239,123,.7); }
 .model-select { color: var(--ink-soft); background: transparent; min-height: 31px; display: flex; align-items: center; gap: 7px; padding: 5px 7px; border-radius: 7px; font-size: 10px; }
 .model-select:hover { background: var(--surface-hover); color: var(--ink); }
 .model-select svg { width: 13px; height: 13px; margin-left: 3px; }

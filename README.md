@@ -21,5 +21,7 @@ Puis ouvrir `http://localhost:4173`.
 - Ajout de fichier, mode vocal placeholder, copie de réponse et partage placeholder
 - Thème clair/sombre mémorisé localement
 - Aucun backend ni clé API requis pour la démo
+- Mode direct activable pour un ton plus franc et moins verbeux
+- Changement de conversation réellement fonctionnel, avec annulation propre d'une génération en cours
 
-Les réponses sont simulées dans `app.js`. Pour connecter un vrai modèle, remplacez `responseFor()` par un appel à votre backend (en conservant la clé API côté serveur).
+Les réponses sont simulées dans `app.js`. Pour connecter un vrai modèle, remplacez `responseFor()` par un appel à votre backend (en conservant la clé API côté serveur). Le mode direct concerne le style de réponse ; il ne désactive pas les protections de sécurité du modèle connecté.
